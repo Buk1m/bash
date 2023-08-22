@@ -1,4 +1,4 @@
-- [Materialy:](#materialy)
+- [Materialy](#materialy)
 - [Analiza skryptu kwadracik.sh](#analiza-skryptu-kwadraciksh)
 - [Shebang](#shebang)
 - [Instrukcja `clear`](#instrukcja-clear)
@@ -16,7 +16,7 @@
     - [Pętla`for`](#pętlafor)
 
 
-# Materialy:
+# Materialy
 - kurs jesli dobrze znasz angielski https://www.codecademy.com/courses/bash-scripting/lessons/learn-bash-scripting
 - https://www.codecademy.com/learn/bash-scripting/modules/bash-scripting/cheatsheet
 - https://www.cs.put.poznan.pl/anstroinski/data/uploads/sop1/materials/sop1_lab7-kurs.html
