@@ -87,7 +87,7 @@ Gdzie:
 
 Przykład:
 ```bash
-read -p -t 10 "Podaj imię: " name
+read -p "Podaj imię: " -t 10 name
 ```
 
 W tym przykładzie:
