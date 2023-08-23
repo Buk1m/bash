@@ -219,7 +219,8 @@ skladnik=1
 echo $(($skladnik + 2))
 ```
 
-Zdefinowalismy zmienna o nazwie `skladnik`, ktorej poczatkowa wartosc to 1 i wypisalismy sume tej zmiennej z liczba 2 na ekranie za pomoca komendy `echo`. (za chwile wyjasnię dlaczego trzeba dopisywac `$((...))` .)
+Zdefinowalismy zmienna o nazwie `skladnik`, ktorej poczatkowa wartosc to 1 i wypisalismy sume tej zmiennej z liczba 2 na ekranie za pomoca komendy `echo`.
+> (za chwile wyjasnię dlaczego trzeba dopisywac `$((...))` .)
 
 ## Modyfikacja wartości zmiennej
 Aby modyfikować wartość zmiennej, przypisz jej nową wartość. Na przykład:
