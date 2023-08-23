@@ -961,7 +961,7 @@ esac
 Gdzie:
 - `wartość` to zmienna lub wyrażenie, które chcemy porównać z wzorcami.
 - `wzorzec1`, `wzorzec2`, `wzorzec3`, ... to różne wzorce, które chcemy porównać z wartością. Wzorce mogą zawierać znaki specjalne, takie jak `*` (dowolny ciąg znaków) i `?` (dowolny pojedynczy znak).
--` blok kodu do wykonania` to kod, który zostanie wykonany, jeśli wartość pasuje do danego wzorca. Bloki kodu są oddzielone od siebie przy użyciu operatora `;;`.
+- `blok kodu do wykonania` to kod, który zostanie wykonany, jeśli wartość pasuje do danego wzorca. Bloki kodu są oddzielone od siebie przy użyciu operatora `;;`.
 - `*)` to opcjonalny wzorzec "domyślny", który pasuje, gdy żaden z powyższych wzorców nie pasuje do wartości. Można w nim umieścić kod, który zostanie wykonany, jeśli żaden z powyższych wzorców nie pasuje
 
 Przykład:
