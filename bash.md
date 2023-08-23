@@ -335,7 +335,7 @@ Poniżej znajduje się bardziej szczegółowe wyjaśnienie poszczególnych eleme
 - `then` wskazuje początek bloku kodu, który ma być wykonany, jeśli warunek jest spełniony (czyli ma wartość `true`).
 
 - `elif` (opcjonalnie) wskazuje początek bloku kodu, z kolejnym warunkiem, ktory zostanie wziety pod uwagę jesli wcześniejszy nie został spelniony. Jedna instrukcja `if` moze zawiera wiele blokow `elif`
-- 
+
 - `inny_warunek` -  warunek ktory zostanie wziety pod uwage jesli w przypadku rozwazania bloku `elif`.
 
 - `else` (opcjonalnie) wskazuje początek bloku kodu, który ma być wykonany, jeśli zadne waruneki nie zostaly spelnione.
