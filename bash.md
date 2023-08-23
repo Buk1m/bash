@@ -22,6 +22,11 @@
 - [Analiza skryptu prostopadloscian](#analiza-skryptu-prostopadloscian)
 - [Analiza skryptu kulka.sh](#analiza-skryptu-kulkash)
 - [Analiza skryptu quiz.sh](#analiza-skryptu-quizsh)
+- [Tablice (Array) - przechowywanie wielu wartosci w zmiennej](#tablice-array---przechowywanie-wielu-wartosci-w-zmiennej)
+  - [Dostęp do wartosci tablicy](#dostęp-do-wartosci-tablicy)
+  - [Modyfikacjia tablicy](#modyfikacjia-tablicy)
+  - [Symbol specjalny `@`](#symbol-specjalny-)
+  - [Wykorzystanie z pętla `for`](#wykorzystanie-z-pętla-for)
 - [Zadania](#zadania)
   - [Zadanie 1 - read, clear, echo](#zadanie-1---read-clear-echo)
   - [Zadanie 2 - zmienne](#zadanie-2---zmienne)
@@ -640,6 +645,88 @@ printf "Wynik dla %s:\nPoprawne odpowiedzi: %d\nNiepoprawne odpowiedzi: %d\n" "$
 
 ```
 
+# Tablice (Array) - przechowywanie wielu wartosci w zmiennej
+
+Linijki skryptu:
+```bash
+questions=(
+  "Pytanie 1: ile to 2+2 (a) 5  (b) 3 (c) 4"
+  "Pytanie 2: Co to jest myszka? (a) zwierze (b) urządzenie do komputera (c) coś innego"
+  "Pytanie 3: Co to jest HTML? (a) język programowania (b) typ strony (c) język lub ciąg znaczników"
+  "Pytanie 4: Darmowe oprogramowanie to? (a) trial (b) shareware (c) freeware"	
+  "Pytanie 5: Co to jest serwer? (a) puszka po czipsach (b) oprogramowanie (c) urządzenie sieciowe"
+)
+
+answers=(
+  "a"
+  "b"
+  "c"
+  "c"
+  "c"
+)
+```
+
+W języku Bash tablice są strukturami danych, które umożliwiają przechowywanie wielu wartości w jednej zmiennej. Kolejne wartosci w ramach tablicy przechowywane sa pod kolejnymi numerami(indeksami) zaczynajac od 0 - zobacz przyklad ponizej.
+
+Aby zadeklarować tablicę w Bash, używamy składni:
+
+```bash
+nazwa_tablicy=(element1 element2 element3 ...)
+```
+
+## Dostęp do wartosci tablicy
+Przykad:
+Tablica zawierjącą trzy elementy: "jabłko", "banan" i "pomarańcza"
+```bash
+owoce=(
+  "jabłko"
+  "banan"
+  "pomarańcza"
+  )
+```
+Kazdy z elementow tablicy jest zapisany pod konkretnym ideksem, czyli numerem.
+
+Aby uzyskać dostęp do elementu tablicy, używamy indeksu w nawiasach kwadratowych.
+
+```bash
+echo ${owoce[0]} # Wyswietli jabłko
+echo ${owoce[1]} # Wyswietli banan
+echo ${owoce[2]} # Wyswietli pomarancza
+```
+## Modyfikacjia tablicy
+Możemy również przypisać nową wartość do elementu tablicy, odwołując się do niego za pomocą indeksu. Na przykład, aby zmienić drugi element tablicy "owoce" na "gruszka", możemy napisać:
+
+```bash
+owoce[1]="gruszka"
+```
+
+## Symbol specjalny `@`
+Aby uzyskać dostęp do wszystkich elementów tablicy, możemy użyć składni ${nazwa_tablicy[@]}. Na przykład, aby wyświetlić wszystkie elementy tablicy "owoce", możemy napisać:
+
+```bash
+echo ${owoce[@]}
+```
+
+```
+jabłko gruszka pomarańcza
+```
+
+## Wykorzystanie z pętla `for`
+
+Aby wykonac operacje na elementach tablicy mozna po niej iterowac za pomoca petli for:
+
+```bash
+for owoc in ${owoce[@]}
+do
+  echo $owoc
+done
+```
+Wynik:
+```bash
+jabłko
+gruszka
+pomarańcza
+```
 
 # Zadania
 ## Zadanie 1 - read, clear, echo
