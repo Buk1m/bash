@@ -45,8 +45,13 @@
     - [5.4 Liczba sum nieparzystych](#54-liczba-sum-nieparzystych)
     - [5.5 Wielokrotnosci z przedzialu](#55-wielokrotnosci-z-przedzialu)
     - [5.6\* Choinka](#56-choinka)
-  - [Zadanie 6 - while](#zadanie-6---while)
-  - [Zadanie 6 - while](#zadanie-6---while-1)
+  - [Zadania 6 - while](#zadania-6---while)
+    - [6.1 Liczby parzyste](#61-liczby-parzyste)
+    - [6.2 Suma liczb](#62-suma-liczb)
+    - [6.3 Liczby odwrotne](#63-liczby-odwrotne)
+    - [6.5\* Suma cyfr](#65-suma-cyfr)
+    - [6.6\* Palindrom](#66-palindrom)
+  - [Zadania 7 - do while](#zadania-7---do-while)
 
 
 # Materialy
@@ -759,8 +764,27 @@ do
 done
 ```
 
-## Zadanie 6 - while
+## Zadania 6 - while
 
 
+### 6.1 Liczby parzyste
+Napisz skrypt `liczby_parzyste.sh`, który wykorzystuje pętlę `while` do wyświetlenia wszystkich liczb parzystych od 1 do `n`. Wartosc `n` zostaje wczytana jako argument od uzytkownika. 
 
-## Zadanie 6 - while
+### 6.2 Suma liczb
+Napisz skrypt `suma_liczb.sh`, który wczytuje od użytkownika liczby tak długo, aż zostanie podana liczba 0. Skrypt powinien obliczyć sumę podanych liczb i wypisać ją na ekranie.
+
+### 6.3 Liczby odwrotne
+Napisz skrypt `liczby_odwrotne.sh`, który wczytuje od użytkownika liczbę i wypisuje na ekranie wszystkie liczby od tej liczby do 1 w kolejności malejącej.
+
+### 6.5* Suma cyfr
+Napisz skrypt `suma_cyfr.sh`, który wczytuje od użytkownika liczbę i oblicza sumę jej cyfr. Skrypt powinien wypisać na ekranie obliczoną sumę.
+
+### 6.6* Palindrom
+Napisz skrypt `palindrom.sh`, który wczytuje od użytkownika napis i sprawdza, czy jest on palindromem. Skrypt powinien wypisać na ekranie komunikat "Napis jest palindromem" lub "Napis nie jest palindromem" w zależności od wyniku.
+
+Mozesz skorzystac z komendy `rev` ktora odwaraca przekazany string:
+```
+odwrocony=$(echo $napis | rev)
+```
+
+## Zadania 7 - do while
