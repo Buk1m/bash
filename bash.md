@@ -9,15 +9,46 @@
   - [Tworzenie zmiennych](#tworzenie-zmiennych)
   - [Dostęp do wartości zmiennej](#dostęp-do-wartości-zmiennej)
   - [Modyfikacja wartości zmiennej](#modyfikacja-wartości-zmiennej)
+- [Operatory arytmetyczne](#operatory-arytmetyczne)
 - [Instrukcje sterowania przeplywem programu](#instrukcje-sterowania-przeplywem-programu)
   - [Instrukcje warunkowe (wykonac czy nie wykonac?)](#instrukcje-warunkowe-wykonac-czy-nie-wykonac)
     - [Instrukcja warunkowa `if`](#instrukcja-warunkowa-if)
   - [Pętle (wielokrotne wykonanie bloku kodu)](#pętle-wielokrotne-wykonanie-bloku-kodu)
     - [Pętla`for`](#pętlafor)
+  - [Pętla `while`](#pętla-while)
+  - [Pętla `do while` inaczej `untill`](#pętla-do-while-inaczej-untill)
+- [Analiza skryptu prostopadloscian](#analiza-skryptu-prostopadloscian)
+- [Analiza skryptu kulka.sh](#analiza-skryptu-kulkash)
+- [Analiza skryptu quiz.sh](#analiza-skryptu-quizsh)
+- [Zadania](#zadania)
+  - [Zadanie 1 - read, clear, echo](#zadanie-1---read-clear-echo)
+  - [Zadanie 2 - zmienne](#zadanie-2---zmienne)
+  - [Zadania 3 - operatory](#zadania-3---operatory)
+    - [3.1 Suma](#31-suma)
+    - [3.2 Roznica](#32-roznica)
+    - [3.3 Iloczyn](#33-iloczyn)
+    - [3.4 Iloraz](#34-iloraz)
+    - [3.5 Potęga](#35-potęga)
+- [Zadania 4 - Instrukcje warunkowe](#zadania-4---instrukcje-warunkowe)
+    - [4.1 Sprawdzenie liczby](#41-sprawdzenie-liczby)
+    - [4.2 Sprawdzenie parzystości](#42-sprawdzenie-parzystości)
+    - [4.3 Sprawdzenie podzielności](#43-sprawdzenie-podzielności)
+    - [4.4 Sprawdzenie długości napisu](#44-sprawdzenie-długości-napisu)
+    - [4.6 Sprawdzenie równości napisów](#46-sprawdzenie-równości-napisów)
+    - [4.7\* Sprawdzenie wielkości liter](#47-sprawdzenie-wielkości-liter)
+  - [Zadania 5 - petla `for`](#zadania-5---petla-for)
+    - [5.1 - Wyświetlanie liczb](#51---wyświetlanie-liczb)
+    - [5.2 Silnia](#52-silnia)
+    - [5.3 Trojkat](#53-trojkat)
+    - [5.4 Liczba sum nieparzystych](#54-liczba-sum-nieparzystych)
+    - [5.5 Wielokrotnosci z przedzialu](#55-wielokrotnosci-z-przedzialu)
+    - [5.6\* Choinka](#56-choinka)
+  - [Zadanie 6 - while](#zadanie-6---while)
 
 
 # Materialy
 - kurs jesli dobrze znasz angielski https://www.codecademy.com/courses/bash-scripting/lessons/learn-bash-scripting
+- https://linuxconfig.org/bash-scripting-tutorial-for-beginners
 - https://www.codecademy.com/learn/bash-scripting/modules/bash-scripting/cheatsheet
 - https://www.cs.put.poznan.pl/anstroinski/data/uploads/sop1/materials/sop1_lab7-kurs.html
 - https://dev.to/ifenna__/adding-colors-to-bash-scripts-48g4
@@ -180,7 +211,77 @@ echo $moja_zmienna # wynik Poczatkowa wartosc
 moja_zmienna="Nowa wartosc"
 echo $moja_zmienna# wynik Nowa wartosc
 ```
+# Operatory arytmetyczne 
+W Bashu dostępne są następujące operatory arytmetyczne:
 
+1. `+` (Dodawanie): Dodaje dwie liczby. Na przykład, `3 + 2` zwróci `5`.
+
+2. `-` (Odejmowanie): Odejmuje drugą liczbę od pierwszej. Na przykład, `3 - 2` zwróci `1`.
+
+3.`*` (Mnożenie): Mnoży dwie liczby. Na przykład, `3 * 2` zwróci `6`.
+
+4.`/` (Dzielenie): Dzieli pierwszą liczbę przez drugą. Na przykład, `6 / 2` zwróci `3`.
+
+5.`%` (Modulo): Zwraca resztę z dzielenia pierwszej liczby przez drugą. Na przykład, `10 % 3` zwróci `1`, ponieważ resztą z dzielenia `10` przez `3` jest `1`.
+
+6. `**` (Potęgowanie): Podnosi pierwszą liczbę do potęgi drugiej liczby. Na przykład, `2 ** 3` zwróci `8`, ponieważ `2` podniesione do potęgi `3` wynosi `8`.
+
+7.`++` (Inkrementacja): Zwiększa wartość zmiennej o `1`. Na przykład, jeśli `x=5`, to `x++` zwiększy wartość `x` do `6`.
+
+8. `--` (Dekrementacja): Zmniejsza wartość zmiennej o `1`. Na przykład, jeśli `x=5`, to `x--` zmniejszy wartość `x` do `4`.
+
+Operacje arytmetyczne w Bashu można wykonywać za pomocą podwójnych nawiasów `$((wyrażenie))`, na przykład:
+
+```bash
+x=5
+y=2
+
+suma=$((x + y))
+echo $suma  # Wyświetli 7
+
+roznica=$((x - y))
+echo $roznica  # Wyświetli 3
+
+iloczyn=$((x * y))
+echo $iloczyn  # Wyświetli 10
+
+iloraz=$((x / y))
+echo $iloraz  # Wyświetli 2
+
+modulo=$((x % y))
+echo $modulo  # Wyświetli 1
+
+potega=$((x ** y))
+echo $potega  # Wyświetli 25
+
+x++
+echo $x  # Wyświetli 6
+
+x--
+echo $x  # Wyświetli 5
+```
+Pamiętaj, że Bash wykonuje tylko dzielenie całkowite, więc `5 / 2` zwróci `2`, a nie `2.5`. 
+
+Aby osiagnac wartosc zmiennoprzecinkowa mozna skorzystac z komendy `bc` czyli kalkulatora.
+
+Podstawowa składnia komendy `bc` wygląda następująco:
+```bash
+echo "wyrażenie arytmetyczne" | bc
+```
+
+Przykład:
+```bash
+echo "5.5 / 2.2" | bc -l # Wyswietli 2.5
+```
+
+W tym przykładzie dzielimy `5.5` przez `2.2`. Opcja `-l` jest używana do włączenia matematyki zmiennoprzecinkowej. Bez tej opcji `bc` wykonałby dzielenie całkowite.
+
+Możesz również używać zmiennych w wyrażeniach przekazywanych do `bc`. Na przykład:
+```bash
+x=5.5
+y=2.2
+echo "$x / $y" | bc -l # Wyswietli 2.5
+```
 
 # Instrukcje sterowania przeplywem programu
 Linijki programu:
@@ -282,3 +383,332 @@ Dzięki tym operatorom porównania i operacjom logicznym instrukcje `if` w Bashu
 
 ## Pętle (wielokrotne wykonanie bloku kodu)
 ### Pętla`for`
+
+Pętla for w Bashu jest używana do powtarzania bloku kodu (linijek kodu pomiedzy `do` i `done`) określoną liczbę razy. Jest to bardzo przydatne, gdy chcemy wykonać pewne operacje wielokrotnie.
+
+Ogólna składnia pętli for w Bashu wygląda następująco:
+
+```bash
+for zmienna in lista_wartosci
+do
+    # blok kodu do wykonania dla każdej wartości
+done
+```
+
+Gdzie:
+- `zmienna` to nazwa zmiennej, która przyjmuje kolejne wartości z listy wartości.
+- `lista_wartosci` to lista wartości, które zmienna przyjmuje po kolei. Może to być ciąg liczb, ciąg znaków, wynik komendy itp.
+- `do` i `done` oznaczają początek i koniec bloku kodu, który ma być wykonany dla każdej wartości.
+
+Przykład:
+
+```bash
+for i in 1 2 3 4 5
+do
+   echo "Liczba to: $i"
+done
+```
+
+W tym przykładzie pętla `for` wykonuje blok kodu (instrukcję `echo`) dla każdej liczby w liście (1, 2, 3, 4, 5). Zmienna `i` przyjmuje kolejne wartości z listy, a instrukcja `echo` wyświetla te wartości.
+
+Po wykonaniu skryptu zobaczymy na ekranie terminala wynik:
+```bash
+Liczba to: 1
+Liczba to: 2
+Liczba to: 3
+Liczba to: 4
+Liczba to: 5
+```
+
+Pętla for może również zawierac iterator (zmienną, której wartosc jest zwiekszana o 1 po kazdym wykonaniu bloku kodu z petli) i wykonywac sie az do spenielnia okreslonego warunku logicznego:
+
+```bash
+for (( i=0; i<5; i++ ))
+do
+   echo "Liczba to: $i"
+done
+```
+
+W tym przypadku pętla `for` zaczyna się od wartości 0 `i=0;`, kończy gdy `i` osiagnie wartośc 5 `i<5;`. Wyrażenie `i++` oznacza, że zmienna `i` zwiększa się o 1 po każdym wykonaniu pętli . Blok kodu (instrukcja echo) jest wykonywany dla każdej wartości i (0, 1, 2, 3, 4).
+
+Po wykonaniu skryptu na ekranie terminala zobaczymy: 
+```bash
+Liczba to: 0
+Liczba to: 1
+Liczba to: 2
+Liczba to: 3
+Liczba to: 4
+```
+
+Wiedząc juz jak działa pętla `for` mozemy wytlumaczyc kod ze skryptu kwadracik.sh:
+```bash
+sum_of_squares=0
+for (( i=$lower_bound; i<=$upper_bound; i++ ))
+do
+  sum_of_squares=$(( $sum_of_squares + $i*$i ))
+done
+```
+
+Dla przykladu w ktorym zmienna `lower_bound=3` a `upper_bound=5`:
+1. zmienna `sum_of_squares` zostaje utworzona z wartoscią `0`
+2. `i=$lower_bound;` czyli zmienna `i` przyjmie poczatkowa wartosc `3`.
+3. Sprawdzony zostanie warunek `i<=$upper_bound` czyli po podstawieniu wartosci warunek `3 <= 5` jest spelniony wiec blok kodu zostanie wykonany;
+4. Wykonany zostaje blok kodu: `sum_of_squares=$(( $sum_of_squares + $i*$i ))` czyli po podstawieniu `sum_of_squares=$(( 0 + 3*3 ))` wartosc zmiennej `sum_of_squares` wynosi `9`
+5. `i++` - po wykonaniu bloku kodu wartosc zmienej `i` zostaje powiekszona o 1. czyli inaczej zapisujac `i=$i+1` => `i=3+1` a zatem zmienna `i` ma wartosc `4`
+6. Sprawdzony zostanie warunek `i<=$upper_bound` czyli po podstawieniu wartosci warunek `4 <= 5` jest spelniony wiec blok kodu zostanie wykonany;
+7. Ponownie wykonany zostaje  blok kodu: `sum_of_squares=$(( $sum_of_squares + $i*$i ))` czyli tym razem po podstawieniu `sum_of_squares=$(( 9 + 4*4 ))` wartosc zmiennej `sum_of_squares` wynosi  `25`
+8. `i++` Nastepuje inkrementacja zmiennej `i`  jak w kroku 5 czyli `i=$i+1` => `i=4+1` a zatem zmienna `i` ma wartosc `5`
+9. Sprawdzony zostanie warunek `i<=$upper_bound` czyli po podstawieniu wartosci warunek `5 <= 5` jest spelniony wiec blok kodu zostanie wykonany;
+
+Jak latwo zauwazyc kroki 4-6 oraz 7-9 powtarzaja się i jedynie zmieniają się wartości zmiennych `i` oraz `sum_of_squares`
+
+A zatem jeszcze raz:
+
+10. Ponownie wykonany zostaje  blok kodu: `sum_of_squares=$(( $sum_of_squares + $i*$i ))` czyli tym razem po podstawieniu `sum_of_squares=$(( 25 + 5*5 ))` wartosc zmiennej `sum_of_squares` wynosi  `50`
+11. `i++` Nastepuje inkrementacja zmiennej `i`  jak w kroku 5 i 8 czyli `i=$i+1` => `i=5+1` a zatem zmienna `i` ma wartosc `6`
+12. Sprawdzony zostanie warunek `i<=$upper_bound` czyli po podstawieniu wartosci warunek warunek `6 <= 5` nie jest spelniony i pętla się zakonczy z ostateczym wynikiem zmiennej `sum_of_squares` o wartosci `50`.
+
+Po zakonczonej pętli wykonana zostanie kolejna linijka programu czyli 
+```bash
+echo "Suma kwadratów kolejnych liczb od $lower_bound do $upper_bound wynosi: $sum_of_squares"
+```
+która wypisze na ekranie terminala:
+```
+Suma kwadratów kolejnych liczb od 3 do 5 wynosi: 50
+```
+## Pętla `while`
+Pętla `while` w Bashu jest używana do powtarzania bloku kodu (instrukcji), dopóki określony warunek jest spełniony (ma wartość `true`). Jest to bardzo przydatne, gdy chcemy wykonać pewne operacje wielokrotnie, ale nie znamy dokładnej liczby powtórzeń z góry.
+
+Ogólna składnia pętli `while` w Bashu wygląda następująco:
+
+
+```bash
+while warunek
+do
+    # blok kodu do wykonania, dopóki warunek jest spełniony
+done
+```
+
+Gdzie:
+- `warunek` to wyrażenie logiczne, które jest ewaluowane jako prawda (`true`) lub fałsz (`false`). Warunek może być zbudowany z różnych operatorów porównania, które poznaleś w ramach instrukcji warunkowej `if`.
+- `do` i `done` oznaczają początek i koniec bloku kodu, który ma być wykonany, dopóki warunek jest spełniony.
+
+Przykład:
+
+```bash
+licznik=1
+
+while [ $licznik -le 5 ]
+do
+   echo "Liczba to: $licznik"
+   licznik=$((licznik+1))
+done
+```
+
+W tym przykładzie pętla `while` wykonuje blok kodu (instrukcję `echo`), dopóki zmienna `licznik` jest mniejsza lub równa `5`. Zmienna `licznik` jest zwiększana o 1 za każdym wykonaniem pętli. Instrukcja `echo` wyświetla wartość zmiennej `licznik` w ramach kazdego wykonania bloku kodu.
+
+Zatem na ekranie terminala zobaczymy:
+```bash
+Liczba to: 1
+Liczba to: 2
+Liczba to: 3
+Liczba to: 4
+Liczba to: 5
+```
+
+## Pętla `do while` inaczej `untill`
+
+# Analiza skryptu prostopadloscian
+```bash
+#!/bin/bash
+
+echo "Podaj długość krawędzi a:"
+read a
+echo "Podaj długość krawędzi b:"
+read b
+echo "Podaj długość krawędzi c:"
+read c
+
+pole=$((2 * (($a * $b) + ($a * $c) + ($b * $c))))
+
+echo "Pole prostopadłościanu o krawędziach a,b,c wynosi: $pole"
+```
+
+Ten skrypt nie zawiera nowych koncepcji i powinien byc zrozumialy po przeczytaniu analizy skrptu kwadracik.sh. 
+
+
+# Analiza skryptu kulka.sh
+
+```bash
+#!/bin/bash
+echo 'Wyliczanie pola kola'
+echo ''
+echo 'Wpisz promień r:'
+read r
+echo ''
+pi=$(echo "3.14*$r" | bc)
+echo "Pole o promieniu $r = $pi"
+```
+
+Skypt kulka.sh rowniez nie powinien juz sprawiac ci problemów. Aby obliczyc pole kola, które wymaga obliczen na liczbach zmiennoprzecinkowych (rzeczywistych) wykorzystano komende `bc` tak jak w rozdziale Operatory arytmetyczne.
+
+# Analiza skryptu quiz.sh
+
+```bash
+#!/bin/bash
+
+echo "Witaj w quizie!"
+read -p "Podaj swoje imię i nazwisko: " name
+
+questions=(
+  "Pytanie 1: ile to 2+2 (a) 5  (b) 3 (c) 4"
+  "Pytanie 2: Co to jest myszka? (a) zwierze (b) urządzenie do komputera (c) coś innego"
+  "Pytanie 3: Co to jest HTML? (a) język programowania (b) typ strony (c) język lub ciąg znaczników"
+  "Pytanie 4: Darmowe oprogramowanie to? (a) trial (b) shareware (c) freeware"	
+  "Pytanie 5: Co to jest serwer? (a) puszka po czipsach (b) oprogramowanie (c) urządzenie sieciowe"
+)
+
+answers=(
+  "a"
+  "b"
+  "c"
+  "c"
+  "c"
+)
+
+correct=0
+incorrect=0
+
+for (( i=0; i<${#questions[@]}; i++ )); do
+  echo "${questions[$i]}"
+  read -p "Odpowiedź: " answer
+  if [[ $answer == ${answers[$i]} ]]; then
+    echo "Dobrze!"
+    ((correct++))
+  else
+    echo "Źle!"
+    ((incorrect++))
+  fi
+done
+
+
+printf "Wynik dla %s:\nPoprawne odpowiedzi: %d\nNiepoprawne odpowiedzi: %d\n" "$name" "$correct" "$incorrect" > ~/quizodp.txt
+
+```
+
+
+# Zadania
+## Zadanie 1 - read, clear, echo
+
+1. Wykorzystaj komendę `echo`, aby wyświetlić pytanie: "Jaki jest Twój ulubiony kolor?"
+
+2. Użyj komendy `read`, aby odczytać odpowiedź użytkownika i przypisać ją do zmiennej `color`.
+
+3. Wykorzystaj komendę `clear`, aby wyczyścić ekran terminala.
+
+4. Wykorzystaj komendę `echo`, aby wyświetlić komunikat: "Twój ulubiony kolor to: [color]", gdzie [color] to wartość zmiennej `color`.
+
+Czy mozemy pominac krok `1.` wykorzystujac jedna z opcji komedy `read`? Sprobuj zmienic odpowiednio swoj program.
+
+## Zadanie 2 - zmienne
+
+1. Zadeklaruj zmienne `imie="John"`, `nazwisko="Doe"` i `rok_urodzenia="1990"`
+
+Wypisz jedna komenda echo `Ja, John o nazwisku Doe urodzilem sie w roku 1990` wykorzystujac zmienne.
+
+Nastepnie w tym samym skrypcie zmien wartosci zmiennych na swoje imie, nazwisko i rok urodzenia i ponownie wypisz na ekranie.
+
+## Zadania 3 - operatory
+
+### 3.1 Suma
+
+Napisz skrypt `suma.sh`, który wczytuje od użytkownika dwie liczby i wypisuje na ekranie wynik dodawania.
+
+### 3.2 Roznica
+Napisz skrypt `roznica.sh`, który wczytuje od użytkownika dwie liczby i wypisuje na ekranie wynik odejmowania.
+
+### 3.3 Iloczyn
+Napisz skrypt `iloczyn.sh`, który wczytuje od użytkownika dwie liczby i wypisuje na ekranie wynik mnozenia.
+
+### 3.4 Iloraz
+Napisz skrypt `iloraz.sh`, który wczytuje od użytkownika dwie liczby i wypisuje na ekranie wynik dzielenia. Uwzględnij liczby zmiennoprzecinkowe.
+
+### 3.5 Potęga
+Napisz skrypt `potega.sh`, który wczytuje od użytkownika dwie liczby i wypisuje na ekranie wynik potęgowania.
+
+# Zadania 4 - Instrukcje warunkowe 
+### 4.1 Sprawdzenie liczby
+Napisz skrypt `sprawdz_liczbe.sh`, który wczytuje od użytkownika jedną liczbę i sprawdza, czy jest ona większa od zera. Jeśli tak, to wypisuje na ekranie komunikat "Liczba jest większa od zera", w przeciwnym razie wypisuje komunikat "Liczba nie jest większa od zera".
+
+### 4.2 Sprawdzenie parzystości
+Napisz skrypt `sprawdz_parzystosc.sh`, który wczytuje od użytkownika jedną liczbę i sprawdza, czy jest ona parzysta. Jeśli tak, to wypisuje na ekranie komunikat "Liczba jest parzysta", w przeciwnym razie wypisuje komunikat "Liczba jest nieparzysta".
+
+### 4.3 Sprawdzenie podzielności
+Napisz skrypt `sprawdz_podzielnosc.sh`, który wczytuje od użytkownika dwie liczby: `liczba` i `dzielnik`. Skrypt powinien sprawdzić, czy `liczba` jest podzielna przez `dzielnik`. Jeśli tak, to wypisuje na ekranie komunikat "Liczba jest podzielna przez dzielnik", w przeciwnym razie wypisuje komunikat "Liczba nie jest podzielna przez dzielnik".
+
+### 4.4 Sprawdzenie długości napisu
+Napisz skrypt `sprawdz_napis.sh`, który wczytuje od użytkownika jeden napis. Skrypt powinien sprawdzić, czy długość napisu jest większa od 5. Jeśli tak, to wypisuje na ekranie komunikat "Napis jest dłuższy niż 5 znaków", w przeciwnym razie wypisuje komunikat "Napis jest krótszy lub równy 5 znakom".
+
+
+Aby sprawdzić długość zmiennej tekstowej w Bash, możesz użyć wbudowanej zmiennej ${#string}. Oto przykład:
+
+```bash
+string="Hello, World!"
+length=${#string}
+echo "Długość stringa: $length"
+```
+Wynik:
+```bash
+Długość stringa: 13
+```
+
+### 4.6 Sprawdzenie równości napisów
+Napisz skrypt `sprawdz_rownosc.sh`, który wczytuje od użytkownika dwa napisy: `napis1` i `napis2`. Skrypt powinien sprawdzić, czy `napis1` jest równy `napis2`. Jeśli tak, to wypisuje na ekranie komunikat "Napisy są równe", w przeciwnym razie wypisuje komunikat "Napisy nie są równe".
+
+### 4.7* Sprawdzenie wielkości liter
+Napisz skrypt `sprawdz_wielkosc.sh`, który wczytuje od użytkownika jeden napis. Skrypt powinien sprawdzić, czy napis składa się tylko z małych liter. Jeśli tak, to wypisuje na ekranie komunikat "Napis składa się tylko z małych liter", w przeciwnym razie wypisuje komunikat "Napis zawiera inne znaki niż małe litery".
+
+## Zadania 5 - petla `for`
+
+### 5.1 - Wyświetlanie liczb
+
+Napisz skrypt `wyswietl_liczby.sh`, który wykorzystuje pętlę `for` do wyświetlenia liczb od `lower_number` do `upper_number` które zostana wczytane od uzytkownika.
+
+### 5.2 Silnia
+Napisz skrypt `silnia.sh`, który policzy silnie liczby podanej jako argument przez uzytkownika. np 5!.
+
+### 5.3 Trojkat
+Napisz skrypt `trojkat.sh` ktory wyswietli na ekranie trojkat ze znakow * o wielkosci podanej przez uzytkownika.
+Przyklad dla wielkosci `5`:
+```
+*
+**
+***
+****
+*****
+```
+
+### 5.4 Liczba sum nieparzystych 
+Napisz skypt `suma_nieparzystych.sh` obliczający sumę liczb nieparzystych z przedziału <x,y>. Wartości x i y podaje użytkownik.
+
+### 5.5 Wielokrotnosci z przedzialu
+Napisz skypt `wielokrotnosci.sh`, który wyświetli wszystkie liczby z przedziału od 50 do 100 podzielne przez dowolną liczbę k, która podaje użytkownik. Przekształć program tak aby przedział liczb również podawał użytkownik.
+
+### 5.6* Choinka
+Napisz skrypt `choinka.sh`, który wczyta od uzytkownika 3 cyfry. Kazda kolejna cyfra musi byc wieksza od poprzedniej i narysuje na ekranie choinke.
+
+Przyklad:
+Uzytkownik podaje 3 5 7
+```
+      *
+    * * *
+      *
+    * * *
+  * * * * *
+      *
+    * * *
+  * * * * *
+* * * * * * *
+     ***
+```
+## Zadanie 6 - while
