@@ -102,8 +102,8 @@ Komenda  `clear` czysci aktualny ekran terminala. Wywolanie tej komendy spowoduj
 # Instrukcja `read`
 Linijki programu:
 ```bash
-	read -p "Podaj dolną granicę zakresu: " lower_bound
-	read -p "Podaj górną granicę zakresu: " upper_bound
+read -p "Podaj dolną granicę zakresu: " lower_bound
+read -p "Podaj górną granicę zakresu: " upper_bound
 ```
 
 Pozwala na wczytanie danych od uzytkownika. Po wywolaniu tej komendy skrypt bedzie czekac na ciag znakow od uzytkownika aż zostanie on zatwierdzony przyciskiem enter.
@@ -169,12 +169,12 @@ Plik posiada nazwe, po której mozemy sie do niego odwolac i dane. Plik mozemy w
 ## Tworzenie zmiennych
 Możesz utworzyć zmienną, przypisując jej wartość za pomocą znaku rownosci  `=`, bez spacji pomiędzy znakami. Na przykład:
 ```bash
-	moja_zmienna="To jest moja zmienna"
+moja_zmienna="To jest moja zmienna"
 ```
 
 podobnie poznana wczesniej komenda `read` spowoduje utworzenie zmiennej `zmienna_imie` z wartoscia wproawadzona przez uzytkownia:
 ```bash
-	read -p "Podaj imię: " zmienna_imie
+read -p "Podaj imię: " zmienna_imie
 ```
 
 Nazwy zmiennych powinny zaczynać się od **litery** lub **znaku podkreślenia** `_`, a następnie mogą zawierać **litery**, **cyfry** i **znaki podkreślenia**. Nazwy zmiennych są wrażliwe na wielkość liter. `Suma` jest inna zmienna niz `suma`.
@@ -218,19 +218,12 @@ echo $moja_zmienna# wynik Nowa wartosc
 W Bashu dostępne są następujące operatory arytmetyczne:
 
 1. `+` (Dodawanie): Dodaje dwie liczby. Na przykład, `3 + 2` zwróci `5`.
-
 2. `-` (Odejmowanie): Odejmuje drugą liczbę od pierwszej. Na przykład, `3 - 2` zwróci `1`.
-
-3.`*` (Mnożenie): Mnoży dwie liczby. Na przykład, `3 * 2` zwróci `6`.
-
-4.`/` (Dzielenie): Dzieli pierwszą liczbę przez drugą. Na przykład, `6 / 2` zwróci `3`.
-
-5.`%` (Modulo): Zwraca resztę z dzielenia pierwszej liczby przez drugą. Na przykład, `10 % 3` zwróci `1`, ponieważ resztą z dzielenia `10` przez `3` jest `1`.
-
+3. .`*` (Mnożenie): Mnoży dwie liczby. Na przykład, `3 * 2` zwróci `6`.
+4. .`/` (Dzielenie): Dzieli pierwszą liczbę przez drugą. Na przykład, `6 / 2` zwróci `3`.
+5. .`%` (Modulo): Zwraca resztę z dzielenia pierwszej liczby przez drugą. Na przykład, `10 % 3` zwróci `1`, ponieważ resztą z dzielenia `10` przez `3` jest `1`.
 6. `**` (Potęgowanie): Podnosi pierwszą liczbę do potęgi drugiej liczby. Na przykład, `2 ** 3` zwróci `8`, ponieważ `2` podniesione do potęgi `3` wynosi `8`.
-
-7.`++` (Inkrementacja): Zwiększa wartość zmiennej o `1`. Na przykład, jeśli `x=5`, to `x++` zwiększy wartość `x` do `6`.
-
+7. .`++` (Inkrementacja): Zwiększa wartość zmiennej o `1`. Na przykład, jeśli `x=5`, to `x++` zwiększy wartość `x` do `6`.
 8. `--` (Dekrementacja): Zmniejsza wartość zmiennej o `1`. Na przykład, jeśli `x=5`, to `x--` zmniejszy wartość `x` do `4`.
 
 Operacje arytmetyczne w Bashu można wykonywać za pomocą podwójnych nawiasów `$((wyrażenie))`, na przykład:
