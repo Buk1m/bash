@@ -30,6 +30,8 @@
   - [Ilosc elementow w tablicy](#ilosc-elementow-w-tablicy)
   - [Wykorzystanie z pętla `for`](#wykorzystanie-z-pętla-for)
   - [Linijka po linijce wyjasnienie petli for ze skryptu quiz.](#linijka-po-linijce-wyjasnienie-petli-for-ze-skryptu-quiz)
+- [`printf` - alternatywa do echo](#printf---alternatywa-do-echo)
+- [`>` i `>>` Przkierowywanie wyniku komendy do pliku](#-i--przkierowywanie-wyniku-komendy-do-pliku)
 - [Analiza skryptu menu.sh](#analiza-skryptu-menush)
 - [Zadania](#zadania)
   - [Zadanie 1 - read, clear, echo](#zadanie-1---read-clear-echo)
@@ -888,6 +890,12 @@ done
 
 12. `done` - Kończy
 
+# `printf` - alternatywa do echo
+<!-- TODO -->
+
+# `>` i `>>` Przkierowywanie wyniku komendy do pliku
+<!-- TODO -->
+
 # Analiza skryptu menu.sh
 ```bash
 #!/bin/bash
@@ -1079,3 +1087,4 @@ odwrocony=$(echo $napis | rev)
 Napisz skrypt `sterowanie.sh`, który wczytuje od uzytkownika liczbe od 1 do 3 i w zaleznosci od numeru wypisuje na ekranie `*`, `**` lub `***`. Jesli uzytkownik poda 0 to zakoncz program za pomoca komendy `exit 0`. Jesli uzytkownik poda inna wartosc niz 0,1,2,3 to wyczysc ekran i zapytaj o numer jeszcze raz. 
 
 ## Zadania 8 - tablice
+<!-- TODO -->
