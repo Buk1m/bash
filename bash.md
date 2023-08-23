@@ -26,7 +26,9 @@
   - [Dostęp do wartosci tablicy](#dostęp-do-wartosci-tablicy)
   - [Modyfikacjia tablicy](#modyfikacjia-tablicy)
   - [Symbol specjalny `@`](#symbol-specjalny-)
+  - [Ilosc elementow w tablicy](#ilosc-elementow-w-tablicy)
   - [Wykorzystanie z pętla `for`](#wykorzystanie-z-pętla-for)
+  - [Linijka po linijce wyjasnienie petli for ze skryptu quiz.](#linijka-po-linijce-wyjasnienie-petli-for-ze-skryptu-quiz)
 - [Zadania](#zadania)
   - [Zadanie 1 - read, clear, echo](#zadanie-1---read-clear-echo)
   - [Zadanie 2 - zmienne](#zadanie-2---zmienne)
@@ -57,6 +59,7 @@
     - [6.5\* Suma cyfr](#65-suma-cyfr)
     - [6.6\* Palindrom](#66-palindrom)
   - [Zadania 7 - do while](#zadania-7---do-while)
+  - [Zadania 8 - tablice](#zadania-8---tablice)
 
 
 # Materialy
@@ -711,22 +714,97 @@ echo ${owoce[@]}
 jabłko gruszka pomarańcza
 ```
 
+## Ilosc elementow w tablicy
+Aby uzyskac ilosc elementow w tablicy mozemy skorzystac z zapisu `${#nazwa_tablicy[@]}`:
+```bash
+echo ${#owoce[@]} # Wyswietli 3
+```
+
 ## Wykorzystanie z pętla `for`
+Linijki skryptu:
+```bash
+for (( i=0; i<${#questions[@]}; i++ )); do
+  echo "${questions[$i]}"
+  read -p "Odpowiedź: " answer
+  if [[ $answer == ${answers[$i]} ]]; then
+    echo "Dobrze!"
+    ((correct++))
+  else
+    echo "Źle!"
+    ((incorrect++))
+  fi
+done
+```
 
 Aby wykonac operacje na elementach tablicy mozna po niej iterowac za pomoca petli for:
 
 ```bash
+# z wykorzystaniem for ... in
+echo "for in:"
 for owoc in ${owoce[@]}
 do
   echo $owoc
 done
+
+# z wykorzystaniem indeksu
+echo "for with i:"
+for (( i=0; i<${#owoce[@]}; i++ )); do
+  echo "${owoce[$i]}"
+done
+
 ```
 Wynik:
-```bash
+```
+for in:
+jabłko
+gruszka
+pomarańcza
+
+for with i:
 jabłko
 gruszka
 pomarańcza
 ```
+
+## Linijka po linijce wyjasnienie petli for ze skryptu quiz.
+```bash
+for (( i=0; i<${#questions[@]}; i++ )); do
+  echo "${questions[$i]}"
+  read -p "Odpowiedź: " answer
+  if [[ $answer == ${answers[$i]} ]]; then
+    echo "Dobrze!"
+    ((correct++))
+  else
+    echo "Źle!"
+    ((incorrect++))
+  fi
+done
+```
+
+1. `for (( i=0; i<${#questions[@]}; i++ ))` - Rozpoczyna pętlę for, która będzie iterować po elementach tablicy questions. Zaczynamy od indeksu 0 poniewaz `i=0`, aż do ostatniego indeksu w tablicy questions poniewaz `${#questions[@]}` to ilosc elemntow w tablicy questions czyli w tym przypadku 5.
+
+2. `do` - Rozpoczyna blok kodu, który będzie wykonywany w każdej iteracji pętli.
+
+3. `echo "${questions[$i]}"` - Wyświetla pytanie, które znajduje się w tablicy `questions` pod indeksem(numerem) `$i`. Zmienna `$i` reprezentuje aktualny numer petli.
+
+4. `read -p "Odpowiedź: " answer` - Czekaj na wprowadzenie odpowiedzi od użytkownika i przypisz ją do zmiennej answer. Komenda `read` z opcją `-p` wyświetla podany tekst jako prompt przed oczekiwaniem na wprowadzenie danych.
+
+5. `if [[ $answer == ${answers[$i]} ]]; then` - Rozpoczyna instrukcję warunkową if, która sprawdza, czy wartość zmiennej `answer` jest równa wartości w tablicy `answers` pod indeksem `$i`.
+
+6. `echo "Dobrze!"` - Wyświetla komunikat `"Dobrze!"`, jeśli odpowiedź jest poprawna.
+
+7. `((correct++))` - Inkrementuje zmienną `correct` o 1. Zmienna `correct` jest używana do zliczania poprawnych odpowiedzi.
+
+8. `else` - Rozpoczyna blok kodu, który będzie wykonywany, jeśli warunek w instrukcji warunkowej `if` nie jest spełniony.
+
+9. `echo "Źle!"` - Wyświetla komunikat `"Źle!"`, jeśli odpowiedź jest niepoprawna.
+
+10. `((incorrect++))` - Inkrementuje zmienną `incorrect` o `1`. Zmienna `incorrect` jest używana do zliczania niepoprawnych odpowiedzi.
+
+11. `fi` - Kończy blok kodu instrukcji warunkowej `if`.
+
+12. `done` - Kończy
+
 
 # Zadania
 ## Zadanie 1 - read, clear, echo
@@ -875,3 +953,5 @@ odwrocony=$(echo $napis | rev)
 ```
 
 ## Zadania 7 - do while
+
+## Zadania 8 - tablice
