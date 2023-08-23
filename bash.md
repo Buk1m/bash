@@ -29,6 +29,7 @@
   - [Ilosc elementow w tablicy](#ilosc-elementow-w-tablicy)
   - [Wykorzystanie z pętla `for`](#wykorzystanie-z-pętla-for)
   - [Linijka po linijce wyjasnienie petli for ze skryptu quiz.](#linijka-po-linijce-wyjasnienie-petli-for-ze-skryptu-quiz)
+- [Analiza skryptu menu.sh](#analiza-skryptu-menush)
 - [Zadania](#zadania)
   - [Zadanie 1 - read, clear, echo](#zadanie-1---read-clear-echo)
   - [Zadanie 2 - zmienne](#zadanie-2---zmienne)
@@ -56,6 +57,7 @@
     - [6.1 Liczby parzyste](#61-liczby-parzyste)
     - [6.2 Suma liczb](#62-suma-liczb)
     - [6.3 Liczby odwrotne](#63-liczby-odwrotne)
+    - [6.4 Oddaj sterowanie uzytkownikowi](#64-oddaj-sterowanie-uzytkownikowi)
     - [6.5\* Suma cyfr](#65-suma-cyfr)
     - [6.6\* Palindrom](#66-palindrom)
   - [Zadania 7 - do while](#zadania-7---do-while)
@@ -317,8 +319,10 @@ Ogólny format instrukcji `if` w Bashu wygląda następująco:
 if warunek
 then
     # blok kodu do wykonania, jeśli warunek jest spełniony
+elif inny_warunek
+    # blok kodu do wykonania, jeśli inny_warunek jest spełniony
 else
-    # blok kodu do wykonania, jeśli warunek nie jest spełniony
+    # blok kodu do wykonania, jeśli zaden z warunkow nie jest spełniony
 fi
 ```
 
@@ -328,7 +332,11 @@ Poniżej znajduje się bardziej szczegółowe wyjaśnienie poszczególnych eleme
 
 - `then` wskazuje początek bloku kodu, który ma być wykonany, jeśli warunek jest spełniony (czyli ma wartość `true`).
 
-- `else` (opcjonalnie) wskazuje początek bloku kodu, który ma być wykonany, jeśli warunek nie jest spełniony (czyli ma wartość `false`).
+- `elif` (opcjonalnie) wskazuje początek bloku kodu, z kolejnym warunkiem, ktory zostanie wziety pod uwagę jesli wcześniejszy nie został spelniony. Jedna instrukcja `if` moze zawiera wiele blokow `elif`
+- 
+- `inny_warunek` -  warunek ktory zostanie wziety pod uwage jesli w przypadku rozwazania bloku `elif`.
+
+- `else` (opcjonalnie) wskazuje początek bloku kodu, który ma być wykonany, jeśli zadne waruneki nie zostaly spelnione.
 
 - `fi` jest zakończeniem instrukcji `if`. Jest to po prostu odwrócenie słowa `if`.
 
@@ -340,15 +348,16 @@ Przykład:
 
 wiek=18
 
-if [ $wiek -ge 18 ]
-then
+if [[ $wiek -ge 67 ]]; then
+    echo "Osoba jest emerytem."
+elif [[ $wiek -ge 18 ]]; then
     echo "Osoba jest pełnoletnia."
 else
     echo "Osoba jest niepełnoletnia."
 fi
 ```
 
-W tym przykładzie, jeśli zmienna `wiek` ma wartość większą lub równą 18, wyświetlany jest komunikat "Osoba jest pełnoletnia.". W przeciwnym razie wyświetlany jest komunikat "Osoba jest niepełnoletnia.".
+W tym przykładzie, jeśli zmienna `wiek` ma wartość większą lub równą 67, wyświetlany jest komunikat "Osoba jest emerytem.". Jesli wiek ma wartosc wieksza lub rowna 18 ale mniejsza niz 67 to wyswietlone jest komunikat "Osoba jest pelnoletnia.". W przeciwnym razie wyświetlany jest komunikat "Osoba jest niepełnoletnia.". 
 
 W instrukcji warunkowej `if` w Bashu można wykorzystać różne operatory porównania do testowania różnych warunków. Oto lista podstawowych operatorów porównania, które można użyć w instrukcji `if`:
 
@@ -805,6 +814,46 @@ done
 
 12. `done` - Kończy
 
+# Analiza skryptu menu.sh
+```bash
+#!/bin/bash
+
+while true
+do
+    clear
+    echo -e "\e[1;37m********************************************************\e[0m"
+    echo -e "\e[1;32mMenu:\e[0m"
+    echo -e "\e[1;33m1. Uruchom skrypt suma\e[0m"
+    echo -e "\e[1;33m2. Uruchom skrypt prostopadloscian\e[0m"
+    echo -e "\e[1;33m3. Uruchom skrypt quiz\e[0m"
+    echo -e "\e[1;33m4. Uruchom skrypt kwadratek\e[0m"
+    echo -e "\e[1;33m5. Uruchom skrypt kulka\e[0m"
+    echo -e "\e[1;31m6. Wyjście z programu\e[0m"
+    echo -e "\e[1;37m********************************************************\e[0m"
+    read -p "Wybierz opcję (1-6) lub pierwszą literę skryptu: " opcja
+
+    case $opcja in
+        1) clear ; echo -e "\e[1;5;42;37mUruchamiam skrypt suma\e[0m" ; sleep 5 ; ./suma ;;
+        2) clear ; echo -e "\e[1;5;42;37mUruchamiam skrypt prostopadloscian\e[0m" ; sleep 5 ; ./prostopadloscian ;;
+        3) clear ; echo -e "\e[1;5;42;37mUruchamiam skrypt quiz\e[0m" ; sleep 5 ; ./quiz ;;
+         4) clear ; echo -e "\e[1;5;42;37mUruchamiam skrypt kwadrat\e[0m" ; sleep 5 ; ./kwadratek ;;
+         5) clear ; echo -e "\e[1;5;42;37mUruchamiam skrypt kula\e[0m" ; sleep 5 ; ./kulka ;;
+        6) echo -e "\e[1;31mNarazie!\e[0m" ; clear ; exit 0 ;;
+        *) opcja_1=$(echo $opcja | cut -c 1) 
+           case $opcja_1 in
+               "k") clear ; echo -e "\e[1;5;42;37mUruchamiam skrypt suma\e[0m" ; sleep 5 ; ./suma ;;
+               "k") clear ; echo -e "\e[1;5;42;37mUruchamiam skrypt prostopadloscian\e[0m" ; sleep 5 ; ./prostopadloscian ;;
+               "s") clear ; echo -e "\e[1;5;42;37mUruchamiam skrypt quiz\e[0m" ; sleep 5 ; ./quiz ;;
+               "kw") clear ; echo -e "\e[1;5;42;37mUruchamiam skrypt kwadrat\e[0m" ; sleep 5 ; ./kwadratek ;;
+               "kwa") clear ; echo -e "\e[1;5;42;37mUruchamiam skrypt kula\e[0m" ; sleep 5 ; ./kulka ;;
+               *) clear ; echo -e "\e[1;31mNieprawidłowa opcja.\e[0m" ;;
+           esac ;;
+    esac
+
+    read -n 1 -s -r -p $'\033[33mKliknij dowolny klawisz, aby wrócić do menu...\033[0m'
+    echo -e "\e[1;37m********************************************************\e[0m"
+done
+```
 
 # Zadania
 ## Zadanie 1 - read, clear, echo
@@ -940,6 +989,9 @@ Napisz skrypt `suma_liczb.sh`, który wczytuje od użytkownika liczby tak długo
 
 ### 6.3 Liczby odwrotne
 Napisz skrypt `liczby_odwrotne.sh`, który wczytuje od użytkownika liczbę i wypisuje na ekranie wszystkie liczby od tej liczby do 1 w kolejności malejącej.
+
+### 6.4 Oddaj sterowanie uzytkownikowi
+Napisz skrypt `sterowanie.sh`, który wczytuje od uzytkownika liczbe od 1 do 3 i w zaleznosci od numeru wypisuje na ekranie `*`, `**` lub `***`. Jesli uzytkownik poda 0 to zakoncz program za pomoca komendy `exit 0`. Jesli uzytkownik poda inna wartosc niz 0,1,2,3 to wyczysc ekran i zapytaj o numer jeszcze raz. 
 
 ### 6.5* Suma cyfr
 Napisz skrypt `suma_cyfr.sh`, który wczytuje od użytkownika liczbę i oblicza sumę jej cyfr. Skrypt powinien wypisać na ekranie obliczoną sumę.
