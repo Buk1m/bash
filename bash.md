@@ -304,7 +304,7 @@ do
 done
 ```
 
-( w skrypcie jest uzyta instukcja `for` ale zacznę od prostszych instrukcji warunkowych a nastepnie przejde do pętli)
+> (w skrypcie jest uzyta instukcja `for` ale zacznę od prostszych instrukcji warunkowych a nastepnie przejde do pętli)
 
 Instrukcje sterowania przeplywem programu pozwalaja sterowac tym ktore linijki skryptu maja sie wykonać, które maja się wykonac wielokrotnie (w pętli), a które maja zostac pominiete.
 
