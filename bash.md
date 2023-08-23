@@ -15,6 +15,8 @@
     - [Instrukcja warunkowa `if`](#instrukcja-warunkowa-if)
   - [Pętle (wielokrotne wykonanie bloku kodu)](#pętle-wielokrotne-wykonanie-bloku-kodu)
     - [Pętla`for`](#pętlafor)
+    - [Petla malejaca](#petla-malejaca)
+    - [Petla iterujaca o wiecej niz 1](#petla-iterujaca-o-wiecej-niz-1)
   - [Pętla `while`](#pętla-while)
   - [Pętla `do while` inaczej `untill`](#pętla-do-while-inaczej-untill)
 - [Analiza skryptu prostopadloscian](#analiza-skryptu-prostopadloscian)
@@ -29,7 +31,7 @@
     - [3.3 Iloczyn](#33-iloczyn)
     - [3.4 Iloraz](#34-iloraz)
     - [3.5 Potęga](#35-potęga)
-- [Zadania 4 - Instrukcje warunkowe](#zadania-4---instrukcje-warunkowe)
+  - [Zadania 4 - Instrukcje warunkowe](#zadania-4---instrukcje-warunkowe)
     - [4.1 Sprawdzenie liczby](#41-sprawdzenie-liczby)
     - [4.2 Sprawdzenie parzystości](#42-sprawdzenie-parzystości)
     - [4.3 Sprawdzenie podzielności](#43-sprawdzenie-podzielności)
@@ -44,6 +46,7 @@
     - [5.5 Wielokrotnosci z przedzialu](#55-wielokrotnosci-z-przedzialu)
     - [5.6\* Choinka](#56-choinka)
   - [Zadanie 6 - while](#zadanie-6---while)
+  - [Zadanie 6 - while](#zadanie-6---while-1)
 
 
 # Materialy
@@ -440,6 +443,49 @@ Liczba to: 3
 Liczba to: 4
 ```
 
+Zmienna `i` nie musi miec wartosci poczatkowej `0` a operacja wykonywana po wykonaniu petli nie jest ograniczona do operatora inkrementacji `++`.
+
+Przyklady "innych" pętli:
+
+### Petla malejaca
+```bash
+for ((i=10; i>=5; i--))
+do
+  echo "Liczba to: $i"
+done
+```
+
+Petla rozpoczyna się z `i=10`, ktore po kazdej iteracji petli malaje o `1` i konczy sie gdy `i` osiagnie wartosc mniejsza niz `5`.
+
+Wynik skryptu to:
+```bash
+Liczba to: 10
+Liczba to: 9
+Liczba to: 8
+Liczba to: 7
+Liczba to: 6
+Liczba to: 5
+```
+
+### Petla iterujaca o wiecej niz 1
+```bash
+for ((i=1; i<=10; i=i+2))
+do
+  echo "Liczba to: $i"
+done
+```
+
+Petla rozpoczyna się z `i=0`, ktore po kazdej iteracji petli rosnie o `2` i konczy sie gdy `i` osiagnie wartosc wieksza niz 10.
+
+Wynik skryptu to:
+```bash
+Liczba to: 1
+Liczba to: 3
+Liczba to: 5
+Liczba to: 7
+Liczba to: 9
+```
+
 Wiedząc juz jak działa pętla `for` mozemy wytlumaczyc kod ze skryptu kwadracik.sh:
 ```bash
 sum_of_squares=0
@@ -636,7 +682,7 @@ Napisz skrypt `iloraz.sh`, który wczytuje od użytkownika dwie liczby i wypisuj
 ### 3.5 Potęga
 Napisz skrypt `potega.sh`, który wczytuje od użytkownika dwie liczby i wypisuje na ekranie wynik potęgowania.
 
-# Zadania 4 - Instrukcje warunkowe 
+## Zadania 4 - Instrukcje warunkowe 
 ### 4.1 Sprawdzenie liczby
 Napisz skrypt `sprawdz_liczbe.sh`, który wczytuje od użytkownika jedną liczbę i sprawdza, czy jest ona większa od zera. Jeśli tak, to wypisuje na ekranie komunikat "Liczba jest większa od zera", w przeciwnym razie wypisuje komunikat "Liczba nie jest większa od zera".
 
@@ -711,4 +757,17 @@ Uzytkownik podaje 3 5 7
 * * * * * * *
      ***
 ```
+
+Nie jest to taki prosty skrypt jak sie wydaje, moze ci sie tu przydac petla malejaca.
+```bash
+for ((i=10; i>=1; i--))
+do
+  echo $i
+done
+```
+
+## Zadanie 6 - while
+
+
+
 ## Zadanie 6 - while
