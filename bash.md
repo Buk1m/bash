@@ -18,7 +18,8 @@
     - [Petla malejaca](#petla-malejaca)
     - [Petla iterujaca o wiecej niz 1](#petla-iterujaca-o-wiecej-niz-1)
   - [Pętla `while`](#pętla-while)
-  - [Pętla `do while` inaczej `untill`](#pętla-do-while-inaczej-untill)
+  - [Pętla `do while`](#pętla-do-while)
+  - [Nieskonczona petla](#nieskonczona-petla)
 - [Analiza skryptu prostopadloscian](#analiza-skryptu-prostopadloscian)
 - [Analiza skryptu kulka.sh](#analiza-skryptu-kulkash)
 - [Analiza skryptu quiz.sh](#analiza-skryptu-quizsh)
@@ -57,10 +58,10 @@
     - [6.1 Liczby parzyste](#61-liczby-parzyste)
     - [6.2 Suma liczb](#62-suma-liczb)
     - [6.3 Liczby odwrotne](#63-liczby-odwrotne)
-    - [6.4 Oddaj sterowanie uzytkownikowi](#64-oddaj-sterowanie-uzytkownikowi)
-    - [6.5\* Suma cyfr](#65-suma-cyfr)
-    - [6.6\* Palindrom](#66-palindrom)
+    - [6.4\* Suma cyfr](#64-suma-cyfr)
+    - [6.5\* Palindrom](#65-palindrom)
   - [Zadania 7 - do while](#zadania-7---do-while)
+    - [7.1 Oddaj sterowanie uzytkownikowi - menu](#71-oddaj-sterowanie-uzytkownikowi---menu)
   - [Zadania 8 - tablice](#zadania-8---tablice)
 
 
@@ -577,7 +578,77 @@ Liczba to: 4
 Liczba to: 5
 ```
 
-## Pętla `do while` inaczej `untill`
+## Pętla `do while` 
+ Jest to odmiana pętli `while`, gdzie warunek jest sprawdzany na końcu bloku kodu, co oznacza, że blok kodu zostanie wykonany przynajmniej raz, niezależnie od wartości warunku na początku.
+
+Składnia pętli `do while`
+```bash
+do
+    # blok kodu do wykonania
+done while warunek
+```
+Gdzie:
+- `do` i `done` oznaczają początek i koniec bloku kodu, który ma być wykonany.
+- `warunek` to wyrażenie logiczne, które jest ewaluowane jako prawda (true) lub fałsz (false). Warunek jest sprawdzany na końcu bloku kodu, po wykonaniu bloku kodu.
+
+Przykład:
+```bash
+licznik=1
+
+do
+   echo "Liczba to: $licznik"
+   licznik=$((licznik+1))
+done while [ $licznik -le 5 ]
+```
+
+W tym przykładzie pętla `do while` wykonuje blok kodu (instrukcję `echo`), dopóki zmienna `licznik` jest mniejsza lub równa `5`. Zmienna `licznik` jest zwiększana o `1` w ramach wykonania bloku. Instrukcja `echo` wyświetla wartość zmiennej `licznik` w ramach każdego wykonania bloku kodu.
+
+Zatem na ekranie terminala zobaczymy:
+```bash
+Liczba to: 1
+Liczba to: 2
+Liczba to: 3
+Liczba to: 4
+Liczba to: 5
+```
+
+Najważniejsza rożnica w porownaniu do petli while:
+```bash
+licznik=10
+
+do
+   echo "Liczba to: $licznik"
+   licznik=$((licznik+1))
+done while [ $licznik -le 5 ]
+```
+
+Pomimo tego ze warunek nie jest spelniony to petla i tak zostanie raz wykonana zanim natapi sprawdzenie warunku konca pętli.
+
+Wynik na ekranie terminala:
+```bash
+Liczba to: 10
+```
+
+## Nieskonczona petla
+Jesli warunek pętli `while` bedzie zawsze prawdziwy to blok kodu pętli bedzie wykonywany w nieskonczonoc.
+
+Przyklad:
+```bash
+while true
+do
+    # blok kodu do wykonania w nieskończoność
+done
+```
+
+Taka pętla moze byc przydatna jesli w srodku jest "blokujaca" akcja. Np. oczekujemy w niej na podanie wartosci od uzytkownika i bedziemy powtarzac akcje w zaleznosci od jego wyborow. Jednak jeden z wyborów musi wtedy pozwalac na zakonczenie petli i wyjscie z programu.
+
+Aby zakonczyc taką petle konieczne jest wyjscie ze skryptu za pomoca komendy:
+```bash
+exit 0
+```
+
+Jesli jednak w petli while nie bedzie blokujacej akcji jak  np.`read` to program moze powtarzac kod w nieskonczonosc i "zawiesi sie". Konieczne wtedy bedzie zakonczenie procesu skryptu "z zewnatrz skryptu" np za pomocą `Ctrl+C` lub `kill -9 PID`.
+
 
 # Analiza skryptu prostopadloscian
 ```bash
@@ -989,14 +1060,10 @@ Napisz skrypt `suma_liczb.sh`, który wczytuje od użytkownika liczby tak długo
 
 ### 6.3 Liczby odwrotne
 Napisz skrypt `liczby_odwrotne.sh`, który wczytuje od użytkownika liczbę i wypisuje na ekranie wszystkie liczby od tej liczby do 1 w kolejności malejącej.
-
-### 6.4 Oddaj sterowanie uzytkownikowi
-Napisz skrypt `sterowanie.sh`, który wczytuje od uzytkownika liczbe od 1 do 3 i w zaleznosci od numeru wypisuje na ekranie `*`, `**` lub `***`. Jesli uzytkownik poda 0 to zakoncz program za pomoca komendy `exit 0`. Jesli uzytkownik poda inna wartosc niz 0,1,2,3 to wyczysc ekran i zapytaj o numer jeszcze raz. 
-
-### 6.5* Suma cyfr
+### 6.4* Suma cyfr
 Napisz skrypt `suma_cyfr.sh`, który wczytuje od użytkownika liczbę i oblicza sumę jej cyfr. Skrypt powinien wypisać na ekranie obliczoną sumę.
 
-### 6.6* Palindrom
+### 6.5* Palindrom
 Napisz skrypt `palindrom.sh`, który wczytuje od użytkownika napis i sprawdza, czy jest on palindromem. Skrypt powinien wypisać na ekranie komunikat "Napis jest palindromem" lub "Napis nie jest palindromem" w zależności od wyniku.
 
 Mozesz skorzystac z komendy `rev` ktora odwaraca przekazany string:
@@ -1005,5 +1072,7 @@ odwrocony=$(echo $napis | rev)
 ```
 
 ## Zadania 7 - do while
+### 7.1 Oddaj sterowanie uzytkownikowi - menu
+Napisz skrypt `sterowanie.sh`, który wczytuje od uzytkownika liczbe od 1 do 3 i w zaleznosci od numeru wypisuje na ekranie `*`, `**` lub `***`. Jesli uzytkownik poda 0 to zakoncz program za pomoca komendy `exit 0`. Jesli uzytkownik poda inna wartosc niz 0,1,2,3 to wyczysc ekran i zapytaj o numer jeszcze raz. 
 
 ## Zadania 8 - tablice
