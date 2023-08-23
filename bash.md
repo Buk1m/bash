@@ -344,7 +344,7 @@ Poniżej znajduje się bardziej szczegółowe wyjaśnienie poszczególnych eleme
 
 - `fi` jest zakończeniem instrukcji `if`. Jest to po prostu odwrócenie słowa `if`.
 
-**Bloki `else` i `elif` sa opcjonalne i moga byc pominiete, wtedy kod wykona sie tylko gdy warunek nastepujacy po `if` będzie spełniony.
+**Bloki `else` i `elif` sa opcjonalne i moga byc pominiete, wtedy kod wykona sie tylko gdy warunek nastepujacy po `if` będzie spełniony.**
 
 Możesz również używać bardziej złożonych warunków, korzystając z operatorów logicznych (`&&` dla "i" logicznego, `||` dla "lub" logicznego) oraz operatorów porównania (np. `-eq` dla równości, `-lt` dla mniejszości itp.), aby tworzyć bardziej elastyczne instrukcje warunkowe w Bashu.
 
