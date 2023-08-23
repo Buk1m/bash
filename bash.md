@@ -31,9 +31,9 @@
   - [Wykorzystanie z pętla `for`](#wykorzystanie-z-pętla-for)
   - [Linijka po linijce wyjasnienie petli for ze skryptu quiz.](#linijka-po-linijce-wyjasnienie-petli-for-ze-skryptu-quiz)
 - [`printf` - alternatywa do echo](#printf---alternatywa-do-echo)
-- [`>` i `>>` Przkierowywanie wyniku komendy do pliku](#-i--przkierowywanie-wyniku-komendy-do-pliku)
+- [Przkierowywanie wyniku komendy do pliku - `>` i `>>`](#przkierowywanie-wyniku-komendy-do-pliku----i-)
 - [Analiza skryptu menu.sh](#analiza-skryptu-menush)
-- [Zadania](#zadania)
+- [Instrukcja sterowania przeplywem programu - `case`](#instrukcja-sterowania-przeplywem-programu---case)
   - [Zadanie 1 - read, clear, echo](#zadanie-1---read-clear-echo)
   - [Zadanie 2 - zmienne](#zadanie-2---zmienne)
   - [Zadania 3 - operatory](#zadania-3---operatory)
@@ -893,7 +893,7 @@ done
 # `printf` - alternatywa do echo
 <!-- TODO -->
 
-# `>` i `>>` Przkierowywanie wyniku komendy do pliku
+# Przkierowywanie wyniku komendy do pliku - `>` i `>>`
 <!-- TODO -->
 
 # Analiza skryptu menu.sh
@@ -937,7 +937,67 @@ do
 done
 ```
 
-# Zadania
+# Instrukcja sterowania przeplywem programu - `case`
+Komenda `case` w Bashu jest używana do tworzenia instrukcji warunkowych, które pozwalają na porównywanie wartości zmiennej lub wyrażenia z różnymi wzorcami. Jest to alternatywa dla instrukcji `if-elif-else` i pozwala na bardziej czytelne i zwięzłe sprawdzanie wielu przypadków.
+
+Ogólna składnia instrukcji `case` wygląda następująco:
+```bash
+case wartość in
+    wzorzec1)
+        # blok kodu do wykonania, jeśli wartość pasuje do wzorca 1
+        ;;
+    wzorzec2)
+        # blok kodu do wykonania, jeśli wartość pasuje do wzorca 2
+        ;;
+    wzorzec3)
+        # blok kodu do wykonania, jeśli wartość pasuje do wzorca 3
+        ;;
+    *)
+        # blok kodu do wykonania, jeśli wartość nie pasuje do żadnego z powyższych wzorców
+        ;;
+esac
+```
+
+Gdzie:
+- `wartość` to zmienna lub wyrażenie, które chcemy porównać z wzorcami.
+- `wzorzec1`, `wzorzec2`, `wzorzec3`, ... to różne wzorce, które chcemy porównać z wartością. Wzorce mogą zawierać znaki specjalne, takie jak `*` (dowolny ciąg znaków) i `?` (dowolny pojedynczy znak).
+-` blok kodu do wykonania` to kod, który zostanie wykonany, jeśli wartość pasuje do danego wzorca. Bloki kodu są oddzielone od siebie przy użyciu operatora `;;`.
+- `*)` to opcjonalny wzorzec "domyślny", który pasuje, gdy żaden z powyższych wzorców nie pasuje do wartości. Można w nim umieścić kod, który zostanie wykonany, jeśli żaden z powyższych wzorców nie pasuje
+
+Przykład:
+```bash
+#!/bin/bash
+
+read -p "Podaj ocenę (A, B, C, D, F): " grade
+
+case $grade in
+    A)
+        echo "Doskonała ocena!"
+        ;;
+    B)
+        echo "Bardzo dobra ocena!"
+        ;;
+    C)
+        echo "Dobra ocena!"
+        ;;
+    D)
+        echo "Dostateczna ocena!"
+        ;;
+    F)
+        echo "Niezdany!"
+        ;;
+    *)
+        echo "Nieprawidłowa ocena!"
+        ;;
+esac
+```
+
+W tym przykładzie użytkownik jest proszony o podanie oceny (A, B, C, D lub F). Następnie instrukcja `case` porównuje wartość zmiennej `grade` z różnymi wzorcami i wykonuje odpowiedni blok kodu, który wyświetla odpowiedni komunikat w zależności od podanej oceny.
+
+Jeśli użytkownik poda ocenę A, zostanie wyświetlony komunikat "Doskonała ocena!". Jeśli poda ocenę B, zostanie wyświetlony komunikat "Bardzo dobra ocena!" i tak dalej. Jeśli podana ocena nie pasuje do żadnego z powyższych wzorców, zostanie wykonany blok kodu oznaczony jako `*`, który wyświetli komunikat "Nieprawidłowa ocena!".
+
+Ważne jest, aby każdy blok kodu w instrukcji case był zakończony operatorem `;;`, który oznacza koniec bloku.
+
 ## Zadanie 1 - read, clear, echo
 
 1. Wykorzystaj komendę `echo`, aby wyświetlić pytanie: "Jaki jest Twój ulubiony kolor?"
